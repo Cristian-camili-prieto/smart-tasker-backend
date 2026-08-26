@@ -23,7 +23,7 @@ public class TareaServiceImp implements TareaService {
 
     @Override
     public List<TareaPendiente> findAllPendiente() {
-        return tareaRepository.findBtPendiente();
+        return tareaRepository.findPendiente();
     }
 
 
