@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import smart.tasker.entity.Categoria;
+import smart.tasker.record.CategoriaRecord;
 import smart.tasker.service.CategoriaService;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public class CategoriaController {
     private CategoriaService categoriaService;
 
     @GetMapping("/obtener")
-    public ResponseEntity<List<Categoria>>obtenerCategoria(){
-        List<Categoria> list = categoriaService.obtenerCategoria();
+    public ResponseEntity<List<CategoriaRecord>>obtenerCategoria(){
+        List<CategoriaRecord> list = categoriaService.obtenerCategoria();
         return ResponseEntity.ok().body(list);
     }
 }

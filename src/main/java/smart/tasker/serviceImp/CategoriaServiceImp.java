@@ -3,6 +3,7 @@ package smart.tasker.serviceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import smart.tasker.entity.Categoria;
+import smart.tasker.record.CategoriaRecord;
 import smart.tasker.repository.CategoriaRepository;
 import smart.tasker.service.CategoriaService;
 
@@ -15,7 +16,13 @@ public class CategoriaServiceImp implements CategoriaService {
     private CategoriaRepository categoriaRepository;
 
     @Override
-    public List<Categoria> obtenerCategoria() {
-        return categoriaRepository.findAll();
+    public List<CategoriaRecord> obtenerCategoria() {
+        return categoriaRepository.findAll()
+                .stream()
+                .map(categoria -> new CategoriaRecord(
+                        categoria.getIdCategoria(),
+                        categoria.getNombreCategoria(),
+                        categoria.getColorHex()
+                )).toList();
     }
 }
