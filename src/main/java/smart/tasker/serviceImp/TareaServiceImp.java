@@ -1,25 +1,29 @@
 package smart.tasker.serviceImp;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import smart.tasker.dto.TareaPendiente;
+import smart.tasker.dtos.CategoriaRecord;
+import smart.tasker.dtos.TareaPendiente;
 import smart.tasker.entity.Tarea;
-import smart.tasker.record.TareaRecord;
+import smart.tasker.dtos.TareaConCategoriaRecord;
+import smart.tasker.dtos.TareaRecord;
 import smart.tasker.repository.TareaRepository;
 import smart.tasker.service.TareaService;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TareaServiceImp implements TareaService {
 
-    @Autowired
-    private TareaRepository tareaRepository;
+
+    private final TareaRepository tareaRepository;
 
 
     @Override
-    public List<TareaRecord>listarConCategoria() {
-        return tareaRepository.findAllContainerJoin();
+    public List<TareaRecord> allCategoria() {
+        return tareaRepository.findAllContainerTarea();
     }
 
     @Override
@@ -30,7 +34,7 @@ public class TareaServiceImp implements TareaService {
     @Override
     public TareaRecord crearTarea(TareaRecord tareaRecord) {
         Tarea nuevaTarea = new Tarea();
-        
+
         nuevaTarea.setEstado(tareaRecord.estado());
         nuevaTarea.setDescripcion(tareaRecord.descripcion());
         nuevaTarea.setTitulo(tareaRecord.titulo());
@@ -39,9 +43,12 @@ public class TareaServiceImp implements TareaService {
 
         Tarea tareaGuardada = tareaRepository.save(nuevaTarea);
 
-        return new TareaRecord(tareaGuardada);
-
+        return  TareaRecord.fromEntity(tareaGuardada);
     }
 
+    @Override
+    public List<TareaConCategoriaRecord> findAllTarea() {
+        return tareaRepository.findAllTareaAndCategoria();
+    }
 
 }

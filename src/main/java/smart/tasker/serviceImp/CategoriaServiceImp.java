@@ -1,19 +1,19 @@
 package smart.tasker.serviceImp;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import smart.tasker.entity.Categoria;
-import smart.tasker.record.CategoriaRecord;
+import smart.tasker.dtos.CategoriaRecord;
 import smart.tasker.repository.CategoriaRepository;
 import smart.tasker.service.CategoriaService;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CategoriaServiceImp implements CategoriaService {
 
-    @Autowired
-    private CategoriaRepository categoriaRepository;
+
+    private final CategoriaRepository categoriaRepository;
 
     @Override
     public List<CategoriaRecord> obtenerCategoria() {

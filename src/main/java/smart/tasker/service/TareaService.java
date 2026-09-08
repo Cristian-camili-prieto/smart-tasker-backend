@@ -1,15 +1,20 @@
 package smart.tasker.service;
 
-import smart.tasker.dto.TareaPendiente;
-import smart.tasker.entity.Tarea;
-import smart.tasker.record.TareaRecord;
+import org.springframework.stereotype.Service;
+import smart.tasker.dtos.TareaPendiente;
+import smart.tasker.dtos.TareaConCategoriaRecord;
+import smart.tasker.dtos.TareaRecord;
 
 import java.util.List;
 
 public interface TareaService {
-    List<TareaRecord>listarConCategoria();
+    List<TareaRecord>allCategoria();
 
     List<TareaPendiente>findAllPendiente();
 
     TareaRecord crearTarea(TareaRecord tareaRecord);
+
+    List<TareaConCategoriaRecord>findAllTarea();
+
+
 }

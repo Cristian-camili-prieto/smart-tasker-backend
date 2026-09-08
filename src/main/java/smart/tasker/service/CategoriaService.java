@@ -1,7 +1,6 @@
 package smart.tasker.service;
 
-import smart.tasker.entity.Categoria;
-import smart.tasker.record.CategoriaRecord;
+import smart.tasker.dtos.CategoriaRecord;
 
 import java.util.List;
 

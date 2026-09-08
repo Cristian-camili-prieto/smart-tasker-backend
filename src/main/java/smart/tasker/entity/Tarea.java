@@ -1,12 +1,10 @@
 package smart.tasker.entity;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import smart.tasker.enums.EstadoTarea;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Data
@@ -24,7 +22,8 @@ public class Tarea {
 
     private String descripcion;
 
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    private EstadoTarea estado;
 
     @Column(name = "fecha_limite")
     private LocalDate fechaLimite;
