@@ -22,27 +22,39 @@ public class TareaController {
     private final TareaService tareaService;
 
     @GetMapping("/allContainerTarea")
-    public ResponseEntity<List<TareaRecord>>obtenerContenedorTarea(){
-        List<TareaRecord> list = tareaService.allCategoria();
+    public ResponseEntity<List<TareaRecord>> obtenerContenedorTarea() {
+        List<TareaRecord> list = tareaService.allTarea();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/pendientes")
-    public ResponseEntity<List<TareaPendiente>>obtenerEstado(){
+    public ResponseEntity<List<TareaPendiente>> obtenerEstado() {
         List<TareaPendiente> listPendiente = tareaService.findAllPendiente();
         return ResponseEntity.ok().body(listPendiente);
     }
 
     @GetMapping("/tareaCategoria")
-    public ResponseEntity<List<TareaConCategoriaRecord>>obtenerTareaCategoria(){
+    public ResponseEntity<List<TareaConCategoriaRecord>> obtenerTareaCategoria() {
         List<TareaConCategoriaRecord> listTareaCategoria = tareaService.findAllTarea();
         return ResponseEntity.ok().body(listTareaCategoria);
     }
 
     @PostMapping("/nuevaTarea")
-    public ResponseEntity<TareaRecord>crearTarea(@Valid @RequestBody TareaRecord tareaRecord){
+    public ResponseEntity<TareaRecord> crearTarea(@Valid @RequestBody TareaRecord tareaRecord) {
         TareaRecord record = tareaService.crearTarea(tareaRecord);
         return ResponseEntity.status(HttpStatus.CREATED).body(record);
+    }
+
+    @PutMapping("actualizar/{id}")
+    public ResponseEntity<TareaRecord> actualizarTarea(@RequestBody TareaRecord tarea, @PathVariable Long id) {
+        TareaRecord tareaRecord = tareaService.actualizarTarea(tarea,id);
+        return tareaRecord != null ? ResponseEntity.ok().body(tareaRecord) : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("eliminarTarea/{id}")
+    public ResponseEntity<Void> eliminarTarea(@PathVariable Long id) {
+        tareaService.eliminar(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

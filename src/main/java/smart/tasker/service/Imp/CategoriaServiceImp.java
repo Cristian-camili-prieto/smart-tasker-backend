@@ -1,4 +1,4 @@
-package smart.tasker.serviceImp;
+package smart.tasker.service.Imp;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
