@@ -2,6 +2,7 @@ package smart.tasker.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import smart.tasker.entity.Categoria;
 
 public record CategoriaRecord(
         Long idCategoria,
@@ -13,4 +14,12 @@ public record CategoriaRecord(
         @NotBlank
         String colorHex
 ) {
+        public static CategoriaRecord fromEntityCategoria (Categoria categoria){
+                return new CategoriaRecord(
+                        categoria.getIdCategoria(),
+                        categoria.getNombreCategoria(),
+                        categoria.getColorHex()
+                );
+
+        }
 }

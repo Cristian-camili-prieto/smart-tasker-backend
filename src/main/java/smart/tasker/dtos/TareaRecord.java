@@ -24,18 +24,18 @@ public record TareaRecord(
         @NotNull(message = "La fecha es obligatoria")
         LocalDate fechaLimite,
         Long idCategoria
-){
+) {
 
     public static TareaRecord fromEntity(Tarea tarea) {
-       return new TareaRecord(
-              tarea.getIdTarea(),
-                      tarea.getTitulo(),
-                      tarea.getDescripcion(),
-                      tarea.getEstado(),
-                      tarea.getFechaLimite(),
-                      tarea.getIdCategoria()
+        return new TareaRecord(
+                tarea.getIdTarea(),
+                tarea.getTitulo(),
+                tarea.getDescripcion(),
+                tarea.getEstado(),
+                tarea.getFechaLimite(),
+                tarea.getIdCategoria()
 
-       );
+        );
 
 
     }
