@@ -2,13 +2,13 @@ package smart.tasker.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import smart.tasker.dtos.TareaPendiente;
+import smart.tasker.dtos.TareaEstado;
 import smart.tasker.dtos.TareaConCategoriaRecord;
 import smart.tasker.dtos.TareaRecord;
+import smart.tasker.enums.EstadoTarea;
 import smart.tasker.service.TareaService;
 
 import java.util.List;
@@ -27,9 +27,9 @@ public class TareaController {
         return ResponseEntity.ok().body(list);
     }
 
-    @GetMapping("/pendientes")
-    public ResponseEntity<List<TareaPendiente>> obtenerEstado() {
-        List<TareaPendiente> listPendiente = tareaService.findAllPendiente();
+    @GetMapping("/estado")
+    public ResponseEntity<List<TareaEstado>> obtenerEstado(@RequestParam EstadoTarea estadoTarea) {
+        List<TareaEstado> listPendiente = tareaService.findByEstado(estadoTarea);
         return ResponseEntity.ok().body(listPendiente);
     }
 

@@ -3,10 +3,11 @@ package smart.tasker.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import smart.tasker.dtos.TareaPendiente;
+import smart.tasker.dtos.TareaEstado;
 import smart.tasker.entity.Tarea;
 import smart.tasker.dtos.TareaConCategoriaRecord;
 import smart.tasker.dtos.TareaRecord;
+import smart.tasker.enums.EstadoTarea;
 
 import java.util.List;
 
@@ -16,8 +17,7 @@ public interface TareaRepository extends JpaRepository<Tarea, Long> {
     @Query("SELECT t FROM Tarea t ")
     List<TareaRecord> findAllContainerTarea();
 
-    @Query("SELECT  t.idTarea AS idTarea, t.estado AS estado FROM Tarea t WHERE t.estado='PENDIENTE'")
-    List<TareaPendiente> findPendiente();
+    List<TareaEstado> findByEstado(EstadoTarea estado);
 
     @Query("""
             SELECT new smart.tasker.dtos.TareaConCategoriaRecord(

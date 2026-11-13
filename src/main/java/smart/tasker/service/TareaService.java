@@ -1,9 +1,9 @@
 package smart.tasker.service;
 
-import org.springframework.stereotype.Service;
-import smart.tasker.dtos.TareaPendiente;
+import smart.tasker.dtos.TareaEstado;
 import smart.tasker.dtos.TareaConCategoriaRecord;
 import smart.tasker.dtos.TareaRecord;
+import smart.tasker.enums.EstadoTarea;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface TareaService {
 
     TareaRecord actualizarTarea(TareaRecord tareaRecord,Long id);
 
-    List<TareaPendiente>findAllPendiente();
+    List<TareaEstado>findByEstado(EstadoTarea estadoTarea);
 
 
     List<TareaConCategoriaRecord>findAllTarea();
